@@ -16,10 +16,12 @@ function preencherFicha() {
   const habilidades = JSON.parse(localStorage.getItem('ficha.habilidades') || "{}");
   console.log("Habilidades carregadas:", habilidades);
   const habilidadesList = [
-    'prontidao', 'esportes', 'briga', 'esquiva', 'impulso', 'luta', 'armas', 'conducao', 'furtividade', 'sobrevivencia',
-    'academicos', 'investigacao', 'medicina', 'ocultismo', 'politica', 'tecnologia', 'empatia', 'expressao', 'intimidacao',
-    'lideranca', 'manipulacao', 'persuasao', 'subterfugio', 'animais', 'financas', 'seguranca', 'religiao', 'arte', 'musica',
-    'ciencia', 'linguas'
+    // Talentos
+    'prontidao', 'esportes', 'briga', 'esquiva', 'empatia', 'expressao', 'intimidacao', 'lideranca', 'manha', 'labia',
+    // Perícias
+    'empatia-animais', 'oficios', 'conducao', 'etiqueta', 'armas-fogo', 'armas-brancas', 'performance', 'seguranca', 'furtividade', 'sobrevivencia',
+    // Conhecimentos
+    'academicos', 'computador', 'financas', 'investigacao', 'direito', 'linguistica', 'medicina', 'ocultismo', 'politica', 'ciencia'
   ];
 
   habilidadesList.forEach(hab => {
@@ -32,44 +34,98 @@ function exportJSON() {
     jogador: localStorage.getItem('ficha.playerName') || "",
     personagem: localStorage.getItem('ficha.characterName') || "",
     clan: localStorage.getItem('ficha.clan') || "",
-    atributos: JSON.parse(localStorage.getItem('ficha.atributos') || "{}")
+    atributos: JSON.parse(localStorage.getItem('ficha.atributos') || "{}"),
+    habilidades: JSON.parse(localStorage.getItem('ficha.habilidades') || "{}"),
+    distribution: localStorage.getItem('ficha.distribution') || "jack"
   };
 
-//   // Ordenar atributos
-//   const atributosOrdenados = {};
-//   Object.keys(ficha.atributos).sort().forEach(key => {
-//     atributosOrdenados[key] = ficha.atributos[key];
-//   });
-//   ficha.atributos = atributosOrdenados;
+  // Ordenar atributos
+  const atributosOrdenados = {};
+  Object.keys(ficha.atributos).sort().forEach(key => {
+    atributosOrdenados[key] = ficha.atributos[key];
+  });
+  ficha.atributos = atributosOrdenados;
 
-//   const mensagem = `
-//     Jogador: ${ficha.jogador}
-//     Personagem: ${ficha.personagem}
-//     Clã: ${ficha.clan}
-//     Atributos:
-//     ${Object.entries(ficha.atributos).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
-//   `;
+  const mensagem = `
+    Jogador: ${ficha.jogador}
+    Personagem: ${ficha.personagem}
+    Clã: ${ficha.clan}
+    Atributos:
+    ${Object.entries(ficha.atributos).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
+    Habilidades:
+    ${Object.entries(ficha.habilidades).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
+    Distribuição: ${ficha.distribution}
+  `;
 
-//   const formData = new FormData();
-//   formData.append("message", mensagem);
+  const formData = new FormData();
+  formData.append("message", mensagem);
 
-//   fetch("https://formspree.io/f/mdkdngen", {
-//     method: "POST",
-//     body: formData,
-//     headers: {
-//       'Accept': 'application/json'
-//     }
-//   })
-//     .then(response => {
-//       if (response.ok) {
-//         alert("Ficha enviada com sucesso!");
-//       } else {
-//         alert("Erro ao enviar ficha.");
-//       }
-//     })
-//     .catch(() => alert("Erro ao enviar ficha."));
+  fetch("https://formspree.io/f/mdkdngen", {
+    method: "POST",
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+    .then(response => {
+      if (response.ok) {
+        alert("Ficha enviada com sucesso!");
+      } else {
+        alert("Erro ao enviar ficha.");
+      }
+    })
+    .catch(() => alert("Erro ao enviar ficha."));
 }
 
+async function gerarPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const ficha = {
+    jogador: localStorage.getItem('ficha.playerName') || "",
+    personagem: localStorage.getItem('ficha.characterName') || "",
+    clan: localStorage.getItem('ficha.clan') || "",
+    atributos: JSON.parse(localStorage.getItem('ficha.atributos') || "{}"),
+    habilidades: JSON.parse(localStorage.getItem('ficha.habilidades') || "{}"),
+    distribution: localStorage.getItem('ficha.distribution') || "jack"
+  };
+
+  // Conteúdo do PDF
+  let y = 10;
+  doc.setFont("Helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("Ficha de Personagem - Vampiro: A Máscara", 10, y);
+  y += 10;
+
+  doc.setFontSize(12);
+  doc.setFont("Helvetica", "normal");
+  doc.text(`Jogador: ${ficha.jogador}`, 10, y); y += 7;
+  doc.text(`Personagem: ${ficha.personagem}`, 10, y); y += 7;
+  doc.text(`Clã: ${ficha.clan}`, 10, y); y += 10;
+
+  doc.setFont("Helvetica", "bold");
+  doc.text("Atributos:", 10, y); y += 7;
+  doc.setFont("Helvetica", "normal");
+  Object.entries(ficha.atributos).sort().forEach(([key, val]) => {
+    doc.text(`- ${key}: ${val}`, 12, y);
+    y += 6;
+  });
+
+  y += 6;
+  doc.setFont("Helvetica", "bold");
+  doc.text("Habilidades:", 10, y); y += 7;
+  doc.setFont("Helvetica", "normal");
+  Object.entries(ficha.habilidades).forEach(([key, val]) => {
+    doc.text(`- ${key}: ${val}`, 12, y);
+    y += 6;
+  });
+
+  y += 8;
+  doc.text(`Distribuição: ${ficha.distribution}`, 10, y);
+
+  // Salva o arquivo
+  doc.save(`Ficha_${ficha.personagem || 'personagem'}.pdf`);
+}
 
 
 preencherFicha();
