@@ -1,0 +1,115 @@
+body {
+  background-color: #111;
+  color: #eee;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+}
+
+h1, h2 {
+  color: #cc0000;
+  text-shadow: 1px 1px 3px #000;
+}
+
+label {
+  display: block;
+  margin: 1rem 0;
+}
+
+input {
+  padding: 0.5rem;
+  background-color: #222;
+  color: #eee;
+  border: 1px solid #cc0000;
+  border-radius: 4px;
+}
+
+button {
+  margin: 1rem 0.5rem 0 0;
+  padding: 0.5rem 1rem;
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
+
+pre {
+  background: #222;
+  padding: 1rem;
+  border: 1px solid #cc0000;
+  border-radius: 4px;
+  overflow-x: auto;
+  color: #0f0;
+}
+
+.attribute-group {
+  background: #1a1a1a;
+  border: 1px solid #cc0000;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+}
+
+.drag-area {
+  margin: 1rem 0;
+  background: #1a1a1a;
+  padding: 1rem;
+  border: 1px solid #cc0000;
+  border-radius: 6px;
+}
+
+.values-pool {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.draggable {
+  background: #cc0000;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: grab;
+  user-select: none;
+}
+
+.attr-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.dropzone {
+  background: #222;
+  border: 2px dashed #cc0000;
+  padding: 1rem;
+  width: 150px;
+  text-align: center;
+  border-radius: 6px;
+  min-height: 50px;
+  position: relative;
+}
+
+.dropzone.filled {
+  background-color: #330000;
+}
+
+.dropzone .draggable {
+  cursor: default;
+}
