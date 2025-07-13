@@ -41,7 +41,7 @@ button {
 }
 
 .step {
-  display: none;
+  display: accordion;
 }
 
 .step.active {

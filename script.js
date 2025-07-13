@@ -1,15 +1,24 @@
 let currentStep = 1;
 
+const pages = [
+  "index.html",
+  "historia.html",
+  "atributos.html",
+  "exportar.html"
+];
+
 function nextStep() {
-  document.getElementById(`step${currentStep}`).classList.remove('active');
-  currentStep++;
-  document.getElementById(`step${currentStep}`).classList.add('active');
+  if (currentStep < pages.length - 1) {
+    currentStep++;
+    window.location.href = pages[currentStep];
+  }
 }
 
 function prevStep() {
-  document.getElementById(`step${currentStep}`).classList.remove('active');
-  currentStep--;
-  document.getElementById(`step${currentStep}`).classList.add('active');
+  if (currentStep > 0) {
+    currentStep--;
+    window.location.href = pages[currentStep];
+  }
 }
 
 function validateAttributes() {
@@ -125,12 +134,14 @@ function validateDraggedAttributes() {
     const attr = zone.dataset.attr;
     if (!valBox) {
       alert("Todos os atributos devem receber um valor.");
+      window.validationError = true;
       return;
     }
 
     const val = parseInt(valBox.textContent);
     if (used.includes(valBox.id)) {
       alert("Valor duplicado detectado. Cada número deve ser usado apenas uma vez.");
+      window.validationError = true;
       return;
     }
 

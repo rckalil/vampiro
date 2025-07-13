@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ficha de Vampiro: A Máscara</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+  <nav>
+    <h1>Ficha de Personagem - Vampiro: A Máscara</h1>
+    <ul>
+      <li><a href="index.html">Informações Básicas</a></li>
+      <li><a href="historia.html">Abraço</a></li>
+      <li><a href="atributos.html">Distribuição de Atributos</a></li>
+      <li><a href="exportar.html">Salvar Personagem</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <h1>Ficha de Personagem - Vampiro: A Máscara</h1>
+
+    <!-- Etapa 2: Atributos (arrastar e soltar) -->
+    <section id="step2" class="step">
+      <h2>Distribuição de Atributos</h2>
+      <p>Arraste os valores abaixo para os atributos. Cada número só pode ser usado uma vez.</p>
+
+      <div class="drag-area">
+        <h4>Valores disponíveis:</h4>
+        <div id="valuesPool" class="values-pool">
+          <!-- Criado dinamicamente por JS -->
+        </div>
+      </div>
+
+      <div class="attribute-dropzones">
+        <h3>Físicos</h3>
+        <div class="attr-group">
+          <div class="dropzone" data-attr="forca">Força</div>
+          <div class="dropzone" data-attr="destreza">Destreza</div>
+          <div class="dropzone" data-attr="vigor">Vigor</div>
+        </div>
+
+        <h3>Sociais</h3>
+        <div class="attr-group">
+          <div class="dropzone" data-attr="carisma">Carisma</div>
+          <div class="dropzone" data-attr="manipulacao">Manipulação</div>
+          <div class="dropzone" data-attr="aparencia">Aparência</div>
+        </div>
+
+        <h3>Mentais</h3>
+        <div class="attr-group">
+          <div class="dropzone" data-attr="percepcao">Percepção</div>
+          <div class="dropzone" data-attr="inteligencia">Inteligência</div>
+          <div class="dropzone" data-attr="raciocinio">Raciocínio</div>
+        </div>
+      </div>
+
+      <button onclick="prevStep()">Voltar</button>
+      <button onclick="validateDraggedAttributes()">Próximo</button>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>

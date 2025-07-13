@@ -6,6 +6,7 @@
   <title>Ficha de Vampiro: A Máscara</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
+
 <body>
   <nav>
     <h1>Ficha de Personagem - Vampiro: A Máscara</h1>
@@ -17,9 +18,15 @@
     </ul>
   </nav>
   <div class="container">
-    <h2>Ficha de Personagem - Vampiro: A Máscara</h2>
-  </div>
-
-  <script src="script.js"></script>
-</body>
+    <h1>Ficha de Personagem - Vampiro: A Máscara</h1>
+    
+    <!-- Etapa 3: Exportar -->
+    <section id="step3" class="step">
+      <h2>Ficha Completa</h2>
+      <pre id="jsonOutput"></pre>
+      <button onclick="prevStep()">Voltar</button>
+      <button onclick="exportJSON()">Exportar JSON</button>
+    </section>
+    <script src="script.js"></script>
+  </body>
 </html>
