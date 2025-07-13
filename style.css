@@ -71,6 +71,10 @@ pre {
   padding: 1rem;
   border: 1px solid #cc0000;
   border-radius: 6px;
+  position: fixed;
+  right: 250px;
+  top: 100px;
+  width: 100px;
 }
 
 .values-pool {
@@ -143,3 +147,22 @@ select:focus {
   max-width: 500px;
 }
 
+.imagem-lateral {
+  position: fixed;
+  top: 0;
+  height: 100vh; /* altura total da tela */
+  object-fit: cover;
+  z-index: -1; /* para não cobrir o conteúdo */
+}
+
+.imagem-lateral.esquerda {
+  left: 0;
+  height: 70vh; /* altura da imagem lateral esquerda */
+  top: 150px; /* ajusta a posição vertical da imagem lateral esquerda */
+}
+
+.imagem-lateral.direita {
+  right: 0;
+  height: 70vh; /* altura da imagem lateral direita */
+  top: 150px; /* ajusta a posição vertical da imagem lateral direita */
+}
