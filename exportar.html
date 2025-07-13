@@ -23,7 +23,23 @@
     <!-- Etapa 3: Exportar -->
     <section id="step3" class="step">
       <h2>Ficha Completa</h2>
-      <pre id="jsonOutput"></pre>
+    <div id="characterSheet" class="character-sheet-box">
+      <h3>Informações Básicas</h3>
+      <p><strong>Nome:</strong> <span id="nome"></span></p>
+      <p><strong>Clã:</strong> <span id="cla"></span></p>
+      <h3>Atributos</h3>
+      <ul>
+        <li><strong>Força:</strong> <span id="forca"></span></li>
+        <li><strong>Destreza:</strong> <span id="destreza"></span></li>
+        <li><strong>Vigor:</strong> <span id="vigor"></span></li>
+        <li><strong>Carisma:</strong> <span id="carisma"></span></li>
+        <li><strong>Manipulação:</strong> <span id="manipulacao"></span></li>
+        <li><strong>Autocontrole:</strong> <span id="autocontrole"></span></li>
+        <li><strong>Percepção:</strong> <span id="percepcao"></span></li>
+        <li><strong>Inteligência:</strong> <span id="inteligencia"></span></li>
+        <li><strong>Raciocínio:</strong> <span id="raciocinio"></span></li>
+      </ul>
+    </div>
       <button onclick="prevStep()">Voltar</button>
       <button onclick="exportJSON()">Exportar JSON</button>
       <button onclick="localStorage.clear(); location.href='index.html'">Nova Ficha</button>

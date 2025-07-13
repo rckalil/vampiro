@@ -48,6 +48,10 @@ window.addEventListener('DOMContentLoaded', () => {
     if (characterNameInput) characterNameInput.value = characterName;
     if (clanSelect) clanSelect.value = clan;
   }
+  const clanDescElement = document.getElementById('clanDescription');
+  if (clanDescElement && clanSelect) {
+    clanDescElement.textContent = clanData[clanSelect.value] || '';
+  }
 });
 
 document.getElementById('clan').addEventListener('change', function () {
@@ -66,4 +70,16 @@ function saveBasicInfo() {
   localStorage.setItem('ficha.clan', clan);
 
   nextStep();
+}
+
+function validateInfo() {
+  const playerName = document.getElementById('playerName').value.trim();
+  const characterName = document.getElementById('characterName').value.trim();
+  const clan = document.getElementById('clan').value;
+  if (!playerName || !characterName || !clan) {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
+  saveBasicInfo();
+
 }
