@@ -22,45 +22,24 @@ function exportJSON() {
     atributos: JSON.parse(localStorage.getItem('ficha.atributos') || "{}")
   };
 
-  // Ordenar atributos por nome
+  // Ordenar atributos
   const atributosOrdenados = {};
-  Object.keys(ficha.atributos)
-    .sort()
-    .forEach(key => {
-      atributosOrdenados[key] = ficha.atributos[key];
-    });
-
+  Object.keys(ficha.atributos).sort().forEach(key => {
+    atributosOrdenados[key] = ficha.atributos[key];
+  });
   ficha.atributos = atributosOrdenados;
 
-  const json = JSON.stringify(ficha, null, 2);
-  const jsonBlob = new Blob([json], { type: "application/json" });
-  const jsonFile = new File([jsonBlob], "ficha.json", { type: "application/json" });
+  const mensagem = `
+    Jogador: ${ficha.jogador}
+    Personagem: ${ficha.personagem}
+    Clã: ${ficha.clan}
+    Atributos:
+    ${Object.entries(ficha.atributos).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
+  `;
 
-  const imagemElement = document.getElementById('fichaImagem');
-
-  // Prepara o formulário
   const formData = new FormData();
-  formData.append("json", jsonFile);
+  formData.append("message", mensagem);
 
-  if (imagemElement && imagemElement.src) {
-    fetch(imagemElement.src)
-      .then(res => res.blob())
-      .then(blob => {
-        const imagemFile = new File([blob], "ficha.png", { type: blob.type });
-        formData.append("imagem", imagemFile);
-
-        enviarParaFormspree(formData);
-      })
-      .catch(() => {
-        alert("Erro ao carregar imagem.");
-      });
-  } else {
-    enviarParaFormspree(formData);
-  }
-}
-
-// Função separada para o envio
-function enviarParaFormspree(formData) {
   fetch("https://formspree.io/f/mdkdngen", {
     method: "POST",
     body: formData,
@@ -77,6 +56,7 @@ function enviarParaFormspree(formData) {
     })
     .catch(() => alert("Erro ao enviar ficha."));
 }
+
 
 
 preencherFicha();
