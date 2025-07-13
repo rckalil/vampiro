@@ -33,58 +33,50 @@ function exportJSON() {
   ficha.atributos = atributosOrdenados;
 
   const json = JSON.stringify(ficha, null, 2);
+  const jsonBlob = new Blob([json], { type: "application/json" });
+  const jsonFile = new File([jsonBlob], "ficha.json", { type: "application/json" });
 
-  const email = prompt("Digite o email para envio:");
-  if (email) {
-    const jsonBlob = new Blob([json], { type: "application/json" });
-    const jsonFile = new File([jsonBlob], "ficha.json", { type: "application/json" });
+  const imagemElement = document.getElementById('fichaImagem');
 
-    const imagemElement = document.getElementById('fichaImagem');
-    let imagemFile = null;
+  // Prepara o formulário
+  const formData = new FormData();
+  formData.append("json", jsonFile);
 
-    if (imagemElement && imagemElement.src) {
-      fetch(imagemElement.src)
-        .then(res => res.blob())
-        .then(blob => {
-          imagemFile = new File([blob], "ficha.png", { type: blob.type });
+  if (imagemElement && imagemElement.src) {
+    fetch(imagemElement.src)
+      .then(res => res.blob())
+      .then(blob => {
+        const imagemFile = new File([blob], "ficha.png", { type: blob.type });
+        formData.append("imagem", imagemFile);
 
-          const formData = new FormData();
-          formData.append("json", jsonFile);
-          formData.append("imagem", imagemFile);
-          formData.append("email", email);
-
-          fetch("/api/enviar-ficha", {
-            method: "POST",
-            body: formData
-          })
-          .then(response => {
-            if (response.ok) {
-              alert("Ficha enviada com sucesso!");
-            } else {
-              alert("Erro ao enviar ficha.");
-            }
-          })
-          .catch(() => alert("Erro ao enviar ficha."));
-        });
-    } else {
-      const formData = new FormData();
-      formData.append("json", jsonFile);
-      formData.append("email", email);
-
-      fetch("/api/enviar-ficha", {
-        method: "POST",
-        body: formData
+        enviarParaFormspree(formData);
       })
-      .then(response => {
-        if (response.ok) {
-          alert("Ficha enviada com sucesso!");
-        } else {
-          alert("Erro ao enviar ficha.");
-        }
-      })
-      .catch(() => alert("Erro ao enviar ficha."));
-    }
+      .catch(() => {
+        alert("Erro ao carregar imagem.");
+      });
+  } else {
+    enviarParaFormspree(formData);
   }
 }
+
+// Função separada para o envio
+function enviarParaFormspree(formData) {
+  fetch("https://formspree.io/f/mdkdngen", {
+    method: "POST",
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+    .then(response => {
+      if (response.ok) {
+        alert("Ficha enviada com sucesso!");
+      } else {
+        alert("Erro ao enviar ficha.");
+      }
+    })
+    .catch(() => alert("Erro ao enviar ficha."));
+}
+
 
 preencherFicha();
