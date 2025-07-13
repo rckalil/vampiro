@@ -24,14 +24,35 @@
       <h2>Informações Básicas</h2>
       <label>Nome do Jogador: <input type="text" id="playerName" /></label>
       <label>Nome do Personagem: <input type="text" id="characterName" /></label>
-      <label>Clã: <input type="text" id="clan" /></label>
-      <button onclick="nextStep()">Próximo</button>
+      <label>Clã:
+  <select id="clan">
+    <option value="">Selecione um Clã</option>
+    <option value="Brujah">Brujah</option>
+    <option value="Gangrel">Gangrel</option>
+    <option value="Malkaviano">Malkaviano</option>
+    <option value="Nosferato">Nosferato</option>
+    <option value="Toreador">Toreador</option>
+    <option value="Tremere">Tremere</option>
+    <option value="Ventrue">Ventrue</option>
+    <option value="Banu haquim">Banu Haquim</option>
+    <option value="Lasombra">Lasombra</option>
+    <option value="O Ministério">O Ministério</option>
+    <option value="Ravnos">Ravnos</option>
+    <option value="Giovanni">Giovanni</option>
+    <option value="Tzimisce">Tzimisce</option>
+  </select>
+  <p id="clanDescription" class="clan-desc"></p>
+
+</label>
+
+      <button onclick="saveBasicInfo()">Próximo</button>
     </section>
 
     
 
   </div>
 
-  <script src="script.js"></script>
+  <script src="comum.js"></script>
+  <script src="historia.js"></script>
 </body>
 </html>

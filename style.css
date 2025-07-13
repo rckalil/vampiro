@@ -113,3 +113,32 @@ pre {
 .dropzone .draggable {
   cursor: default;
 }
+
+select {
+  padding: 0.5em;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background-color: #111;
+  color: #fff;
+  font-size: 1em;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+select:focus {
+  outline: none;
+  border-color: #c00;
+  box-shadow: 0 0 5px #c00;
+}
+
+.clan-desc {
+  background-color: #222;
+  color: #ccc;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 1em;
+  margin-top: 1em;
+  max-width: 500px;
+}
