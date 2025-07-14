@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 40vw;
   margin: auto;
   padding: 2rem;
 }
@@ -72,9 +72,9 @@ pre {
   border: 1px solid #cc0000;
   border-radius: 6px;
   position: fixed;
-  right: 250px;
-  top: 100px;
-  width: 100px;
+  right: 17vw;
+  top: 17vh;
+  width: 10vw;
 }
 
 .values-pool {
@@ -103,7 +103,7 @@ pre {
   background: #222;
   border: 2px dashed #cc0000;
   padding: 1rem;
-  width: 150px;
+  width: 10vw;
   text-align: center;
   border-radius: 6px;
   min-height: 50px;
@@ -144,7 +144,7 @@ select:focus {
   border-radius: 8px;
   padding: 1em;
   margin-top: 1em;
-  max-width: 500px;
+  max-width: 40vw;
 }
 
 .imagem-lateral {
@@ -158,13 +158,13 @@ select:focus {
 .imagem-lateral.esquerda {
   left: 0;
   height: 70vh; /* altura da imagem lateral esquerda */
-  top: 150px; /* ajusta a posição vertical da imagem lateral esquerda */
+  top: 12vh; /* ajusta a posição vertical da imagem lateral esquerda */
 }
 
 .imagem-lateral.direita {
   right: 0;
   height: 70vh; /* altura da imagem lateral direita */
-  top: 150px; /* ajusta a posição vertical da imagem lateral direita */
+  top: 12vh; /* ajusta a posição vertical da imagem lateral direita */
 }
 
 .dist {
@@ -174,9 +174,9 @@ select:focus {
   border: 1px solid #cc0000;
   border-radius: 6px;
   position: fixed;
-  left: 30px;
-  top: 100px;
-  width: 330px;
+  left: 2vw;
+  top: 10vh;
+  width: 22vw;
 }
 
 .especial {
@@ -188,6 +188,7 @@ select:focus {
   padding: 10px;
   margin-bottom: 1rem;
   border-radius: 8px;
+  width: 35vw;
 }
 /* 
 #disciplinasContainer {
@@ -205,7 +206,7 @@ select:focus {
   border: 1px solid #cc0000;
   border-radius: 6px;
   position: fixed;
-  right: 100px;
-  top: 100px;
-  width: 300px;
+  right: 7vw;
+  top: 10vb;
+  width: 20vw;
 }
