@@ -5,6 +5,7 @@ const pages = [
   "historia.html",
   "atributos.html",
   "habilidades.html",
+  "especialidades.html",
   "exportar.html"
 ];
 

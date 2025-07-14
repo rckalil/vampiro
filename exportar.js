@@ -14,7 +14,6 @@ function preencherFicha() {
   document.getElementById('raciocinio').textContent = atributos.raciocinio || "";
 
   const habilidades = JSON.parse(localStorage.getItem('ficha.habilidades') || "{}");
-  console.log("Habilidades carregadas:", habilidades);
   const habilidadesList = [
     // Talentos
     'prontidao', 'esportes', 'briga', 'esquiva', 'empatia', 'expressao', 'intimidacao', 'lideranca', 'manha', 'labia',
@@ -26,6 +25,11 @@ function preencherFicha() {
 
   habilidadesList.forEach(hab => {
     document.getElementById(hab).textContent = habilidades[hab] ? habilidades[hab] : 0;
+  });
+
+  const especializacoes = JSON.parse(localStorage.getItem('ficha.especializacoes') || "{}");
+  Object.entries(especializacoes).forEach(([chave, valor]) => {
+    document.getElementById(chave + '-especial').textContent = valor;
   });
 }
 

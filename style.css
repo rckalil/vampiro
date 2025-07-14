@@ -166,3 +166,19 @@ select:focus {
   height: 70vh; /* altura da imagem lateral direita */
   top: 150px; /* ajusta a posição vertical da imagem lateral direita */
 }
+
+.dist {
+  margin: 1rem 0;
+  background: #1a1a1a;
+  padding: 1rem;
+  border: 1px solid #cc0000;
+  border-radius: 6px;
+  position: fixed;
+  left: 30px;
+  top: 100px;
+  width: 330px;
+}
+
+.especial {
+  color: #c00;
+}
