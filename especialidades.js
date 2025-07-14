@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-  const habilidadesEspeciaisFixas = ['oficios', 'performance', 'ciencia', 'academicos'];
+  const habilidadesEspeciaisFixas = ['oficios', 'performance', 'ciencia', 'academicos', 'expressao'];
   const habilidadesSalvas = JSON.parse(localStorage.getItem('ficha.habilidades'));
   const especializacoesSalvas = JSON.parse(localStorage.getItem('ficha.especializacoes') || "{}");
   const container = document.querySelector('.container');

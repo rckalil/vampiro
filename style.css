@@ -182,3 +182,30 @@ select:focus {
 .especial {
   color: #c00;
 }
+
+.disciplina-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+/* 
+#disciplinasContainer {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  width: 500px;
+} */
+
+#painelDetalhes {
+  margin: 1rem 0;
+  background: #1a1a1a;
+  padding: 1rem;
+  border: 1px solid #cc0000;
+  border-radius: 6px;
+  position: fixed;
+  right: 100px;
+  top: 100px;
+  width: 300px;
+}

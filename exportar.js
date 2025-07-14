@@ -31,6 +31,12 @@ function preencherFicha() {
   Object.entries(especializacoes).forEach(([chave, valor]) => {
     document.getElementById(chave + '-especial').textContent = valor;
   });
+
+  const disciplinas = JSON.parse(localStorage.getItem('ficha.disciplinas') || "{}");
+  console.log(disciplinas);
+  Object.entries(especializacoes).forEach(dis => {
+    document.getElementById(dis).textContent = disciplinas[dis] ? disciplinas[dis] : 0;
+  });
 }
 
 function exportJSON() {
@@ -40,7 +46,8 @@ function exportJSON() {
     clan: localStorage.getItem('ficha.clan') || "",
     atributos: JSON.parse(localStorage.getItem('ficha.atributos') || "{}"),
     habilidades: JSON.parse(localStorage.getItem('ficha.habilidades') || "{}"),
-    distribution: localStorage.getItem('ficha.distribution') || "jack"
+    distribution: localStorage.getItem('ficha.distribution') || "jack",
+    especializacoes: JSON.parse(localStorage.getItem('ficha.especializacoes') || "{}")
   };
 
   // Ordenar atributos
@@ -59,6 +66,8 @@ function exportJSON() {
     Habilidades:
     ${Object.entries(ficha.habilidades).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
     Distribuição: ${ficha.distribution}
+    Especializações:
+    ${Object.entries(ficha.especializacoes).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
   `;
 
   const formData = new FormData();
@@ -91,7 +100,8 @@ async function gerarPDF() {
     clan: localStorage.getItem('ficha.clan') || "",
     atributos: JSON.parse(localStorage.getItem('ficha.atributos') || "{}"),
     habilidades: JSON.parse(localStorage.getItem('ficha.habilidades') || "{}"),
-    distribution: localStorage.getItem('ficha.distribution') || "jack"
+    distribution: localStorage.getItem('ficha.distribution') || "jack",
+    especializacoes: JSON.parse(localStorage.getItem('ficha.especializacoes') || "{}")
   };
 
   // Conteúdo do PDF
@@ -124,8 +134,21 @@ async function gerarPDF() {
     y += 6;
   });
 
+  doc.addPage();
+
+  y = 10
+
   y += 8;
   doc.text(`Distribuição: ${ficha.distribution}`, 10, y);
+
+  y += 6;
+  doc.setFont("Helvetica", "bold");
+  doc.text("Especializações:", 10, y); y += 7;
+  doc.setFont("Helvetica", "normal");
+  Object.entries(ficha.especializacoes).forEach(([key, val]) => {
+    doc.text(`- ${key}: ${val}`, 12, y);
+    y += 6;
+  });
 
   // Salva o arquivo
   doc.save(`Ficha_${ficha.personagem || 'personagem'}.pdf`);

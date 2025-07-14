@@ -8,6 +8,11 @@
 </head>
 
 <body>
+  <!-- Imagem da esquerda -->
+  <img src="img/rosa.png" class="imagem-lateral esquerda" alt="Imagem Esquerda"/>
+
+  <!-- Imagem da direita -->
+  <img src="img/vinho.png" class="imagem-lateral direita" alt="Imagem Direita"/>
   <div class="container">
     <h1>Vampiro: A Máscara</h1>
     
@@ -76,9 +81,9 @@
       </div>
     </div>
       <button onclick="prevStep()">Voltar</button>
-      <button onclick="gerarPDF()">Exportar PDF</button>
-      <button onclick="exportJSON()">Exportar JSON</button>
-      <button onclick="localStorage.clear(); location.href='index.html'">Nova Ficha</button>
+      <button onclick="gerarPDF()">Salvar personagem para mim</button>
+      <button onclick="exportJSON()">Enviar personagem à Mestra do jogo</button>
+      <button onclick="localStorage.clear(); location.href='index.html'">Começar tudo de novo</button>
     </section>
     <script src="comum.js"></script>
     <script src="exportar.js"></script>
