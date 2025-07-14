@@ -33,10 +33,11 @@ function preencherFicha() {
   });
 
   const disciplinas = JSON.parse(localStorage.getItem('ficha.disciplinas') || "{}");
-  console.log(disciplinas);
-  Object.entries(especializacoes).forEach(dis => {
-    document.getElementById(dis).textContent = disciplinas[dis] ? disciplinas[dis] : 0;
-  });
+  const nomes = Object.keys(disciplinas); // ["Potência", "Rapidez", ...]
+
+  document.getElementById('d1').textContent = nomes[0] ? `${nomes[0]} (${disciplinas[nomes[0]]})` : "";
+  document.getElementById('d2').textContent = nomes[1] ? `${nomes[1]} (${disciplinas[nomes[1]]})` : "";
+  document.getElementById('d3').textContent = nomes[2] ? `${nomes[2]} (${disciplinas[nomes[2]]})` : "";
 }
 
 function exportJSON() {
@@ -47,7 +48,8 @@ function exportJSON() {
     atributos: JSON.parse(localStorage.getItem('ficha.atributos') || "{}"),
     habilidades: JSON.parse(localStorage.getItem('ficha.habilidades') || "{}"),
     distribution: localStorage.getItem('ficha.distribution') || "jack",
-    especializacoes: JSON.parse(localStorage.getItem('ficha.especializacoes') || "{}")
+    especializacoes: JSON.parse(localStorage.getItem('ficha.especializacoes') || "{}"),
+    disciplinas: JSON.parse(localStorage.getItem('ficha.disciplinas') || "{}")
   };
 
   // Ordenar atributos
@@ -68,6 +70,8 @@ function exportJSON() {
     Distribuição: ${ficha.distribution}
     Especializações:
     ${Object.entries(ficha.especializacoes).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
+    Disciplinas:
+    ${Object.entries(ficha.disciplinas).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
   `;
 
   const formData = new FormData();
@@ -101,7 +105,8 @@ async function gerarPDF() {
     atributos: JSON.parse(localStorage.getItem('ficha.atributos') || "{}"),
     habilidades: JSON.parse(localStorage.getItem('ficha.habilidades') || "{}"),
     distribution: localStorage.getItem('ficha.distribution') || "jack",
-    especializacoes: JSON.parse(localStorage.getItem('ficha.especializacoes') || "{}")
+    especializacoes: JSON.parse(localStorage.getItem('ficha.especializacoes') || "{}"),
+    disciplinas: JSON.parse(localStorage.getItem('ficha.disciplinas') || "{}")
   };
 
   // Conteúdo do PDF
@@ -146,6 +151,15 @@ async function gerarPDF() {
   doc.text("Especializações:", 10, y); y += 7;
   doc.setFont("Helvetica", "normal");
   Object.entries(ficha.especializacoes).forEach(([key, val]) => {
+    doc.text(`- ${key}: ${val}`, 12, y);
+    y += 6;
+  });
+
+  y += 6;
+  doc.setFont("Helvetica", "bold");
+  doc.text("Disciplinas:", 10, y); y += 7;
+  doc.setFont("Helvetica", "normal");
+  Object.entries(ficha.disciplinas).forEach(([key, val]) => {
     doc.text(`- ${key}: ${val}`, 12, y);
     y += 6;
   });
