@@ -1,19 +1,38 @@
 const totalPermitido = 3;
 const clanDisciplinas = {
-  "Brujah": ["Potência", "Rapidez", "Presença"],
-  "Toreador": ["Rapidez", "Ofuscação", "Presença"],
-  "Gangrel": ["Animalismo", "Fortitude", "Protean"],
-  "Nosferatu": ["Ofuscação", "Potência", "Animalismo"]
+  "Brujah": ["Rapidez", "Potência", "Presença"],
+  "Grangrel": ["Animalismo", "Fortitude", "Metamorfose"],
+  "Malkavian": ["Auspícios", "Demência", "Ofuscação"],
+  "Nosferatu": ["Animalismo", "Ofuscação", "Potência"],
+  "Toreador": ["Auspícios", "Rapidez", "Presença"],
+  "Tremere": ["Auspícios", "Dominação", "Taumaturgia"],
+  "Ventrue": ["Dominação", "Fortitude", "Presença"],
+  "Lasombra": ["Dominação", "Potência", "Tenebrosidade"],
+  "Tzimisce": ["Animalismo", "Auspícios", "Vicissitude"],
+  "Assamita": ["Ofuscação", "Rapidez", "Quietus"],
+  "Setita": ["Ofuscação", "Presença", "Serpentis"],
+  "Giovanni": ["Dominação", "Necromancia", "Potência"],
+  "Ravnos": ["Animalismo", "Fortitude", "Quimerismo"]
 };
 
 const disciplinasList = {
-  "Potência": ["Força Brutal", "Soco Devastador", "Explosão de Poder", "Ruptura Óssea", "Impacto Final"],
-  "Rapidez": ["Movimento Ágil", "Desvio Rápido", "Golpes Múltiplos", "Velocidade Relâmpago", "Intangibilidade"],
-  "Presença": ["Carisma Hipnótico", "Comando Sutil", "Aura de Influência", "Domínio Emocional", "Controle Total"],
-  "Ofuscação": ["Sumir", "Sombra", "Esquiva Visual", "Nada te vê", "Desaparecimento Total"],
-  "Animalismo": ["Fera Interior", "Comando Animal", "Ligação Selvagem", "Alcateia", "Forma da Besta"],
-  "Fortitude": ["Resistência", "Casca de Pedra", "Carne de Ferro", "Inquebrável", "Eterno"],
-  "Protean": ["Visão da Fera", "Garras", "Forma Parcial", "Transformação", "Fusão com a Terra"]
+  "Animalismo": ["Sussurros Selvagens", "O Chamado", "Acalmar a Besta", "Dominar o Espírito", "Expulsar a Besta"],
+  "Auspícios": ["Sentidos Aguçados", "Percepção da Aura", "O Toque do Espírito", "Telepatia", "Projeção Psíquica"],
+  "Rapidez": [],
+  "Quimerismo": ["Ignis Fatuus", "Fata Morgana", "Aparição", "Permanência", "Cruel Realidade"],
+  "Demência": ["Paixão", "Assombrar a Alma", "Olhos do Caos", "A Voz da Loucura", "Insanidade Total"],
+  "Dominação": ["O Comando", "Hipnotizar", "Ordenar Esquecimentos", "Condicionamento", "Possessão"],
+  "Fortitude": [],
+  "Necromancia": ["Visao Cadavérica", "Invocar o Espírito", "Compelir", "Assombração", "Tormento"],
+  "Ofuscação": ["Manto das Sombras", "Presença Invisível", "A Máscara das Mil Faces", "Desaparecimento do Olho da Mente", "Cobrindo o Grupo"],
+  "Tenebrosidade": ["Jogo de Sombras", "Mortalha das Trevas", "Braços do Abismo", "Metamorfose Sombria", "Corpo de Sombras"],
+  "Potência": [],
+  "Presença": ["Fascínio", "Olhar Aterrorizante", "Transe", "Convocação", "Majestade"],
+  "Metamorfose": ["Os Olhos da Besta", "Garras da Besta", "Fusão Com a Terra", "A Forma da Besta", "Forma de Névoa"],
+  "Quietus": ["Silêncio Mortal", "O Toque do Escorpião", "O Chamado de Dagon", "A Carícia de Baal", "O Gosto da Morte"],
+  "Serpentis": ["Os Olhos da Serpente", "A Língua da Serpente", "A Pele da Víbora", "A Forma da Serpente", "O Coração das Trevas"],
+  "Taumaturgia": ["Complexo"],
+  "Vicissitude": ["Aspecto Maleável", "Moldar a Carne", "Moldar os Ossos", "Forma Horripilante", "Forma Sanguinea"]
 };
 
 const selecionados = {}; // { Potência: 2, Rapidez: 1 }

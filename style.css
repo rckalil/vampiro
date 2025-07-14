@@ -207,6 +207,15 @@ select:focus {
   border-radius: 6px;
   position: fixed;
   right: 7vw;
-  top: 10vb;
+  top: 16vh;
+  width: 20vw;
+}
+
+.menu {
+  margin: 1rem 0;
+  padding: 1rem;
+  position: fixed;
+  right: 7vw;
+  top: 5vb;
   width: 20vw;
 }
