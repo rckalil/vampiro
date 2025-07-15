@@ -9,6 +9,7 @@ const pages = [
   "disciplinas.html",
   "meritos_falhas.html",
   "historia.html",
+  "biografia.html",
   "exportar.html"
 ];
 

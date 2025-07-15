@@ -30,6 +30,12 @@ function saveHistoryInfo() {
     return;
   }
 
+  const parsedYear = parseInt(birthYear, 10);
+  if (isNaN(parsedYear) || parsedYear < 1780) {
+    alert("O Ano de Nascimento deve ser igual ou superior a 1780.");
+    return;
+  }
+
   const convictions = [];
   let camposIncompletos = false;
 

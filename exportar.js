@@ -81,6 +81,8 @@ function preencherFicha() {
     html += '</ul>';
     falhasDiv.innerHTML = html;
   }
+  const biografia = localStorage.getItem('historia.biografia');
+  document.getElementById('biografia').textContent = biografia || "";
 }
 
 
@@ -93,31 +95,53 @@ function exportJSON() {
     habilidades: JSON.parse(localStorage.getItem('ficha.habilidades') || "{}"),
     distribution: localStorage.getItem('ficha.distribution') || "jack",
     especializacoes: JSON.parse(localStorage.getItem('ficha.especializacoes') || "{}"),
-    disciplinas: JSON.parse(localStorage.getItem('ficha.disciplinas') || "{}")
+    disciplinas: JSON.parse(localStorage.getItem('ficha.disciplinas') || "{}"),
+    meritos: JSON.parse(localStorage.getItem('ficha.meritos') || "[]"),
+    falhas: JSON.parse(localStorage.getItem('ficha.falhas') || "[]"),
+    nascimento: localStorage.getItem('historia.birthYear') || "",
+    ambicao: localStorage.getItem('historia.ambition') || "",
+    desejo: localStorage.getItem('historia.desire') || "",
+    convictions: JSON.parse(localStorage.getItem('historia.convictions') || "[]"),
+    biografia: localStorage.getItem('historia.biografia') || ""
   };
 
-  // Ordenar atributos
-  const atributosOrdenados = {};
-  Object.keys(ficha.atributos).sort().forEach(key => {
-    atributosOrdenados[key] = ficha.atributos[key];
-  });
-  ficha.atributos = atributosOrdenados;
-
+  // Organiza os dados como mensagem de texto
   const mensagem = `
-    Jogador: ${ficha.jogador}
-    Personagem: ${ficha.personagem}
-    Clã: ${ficha.clan}
-    Atributos:
-    ${Object.entries(ficha.atributos).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
-    Habilidades:
-    ${Object.entries(ficha.habilidades).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
-    Distribuição: ${ficha.distribution}
-    Especializações:
-    ${Object.entries(ficha.especializacoes).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
-    Disciplinas:
-    ${Object.entries(ficha.disciplinas).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
-  `;
+Jogador: ${ficha.jogador}
+Personagem: ${ficha.personagem}
+Clã: ${ficha.clan}
 
+Atributos:
+${Object.entries(ficha.atributos).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
+
+Habilidades:
+${Object.entries(ficha.habilidades).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
+
+Distribuição: ${ficha.distribution}
+
+Especializações:
+${Object.entries(ficha.especializacoes).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
+
+Disciplinas:
+${Object.entries(ficha.disciplinas).map(([k, v]) => ` - ${k}: ${v}`).join('\n')}
+
+Méritos:
+${ficha.meritos.map(m => ` - ${m.nome} (Custo: ${m.custo}) — ${m.descricao}`).join('\n')}
+
+Falhas:
+${ficha.falhas.map(f => ` - ${f.nome} (Ganho: ${f.ganho}) — ${f.descricao}`).join('\n')}
+
+Ano de Nascimento: ${ficha.nascimento}
+Ambição: ${ficha.ambicao}
+Desejo: ${ficha.desejo}
+Convicções:
+${ficha.convictions.map(c => ` - ${c.conviction} (Modelo: ${c.model})`).join('\n')}
+
+Biografia:
+${ficha.biografia}
+`;
+
+  // Envia via Formspree
   const formData = new FormData();
   formData.append("message", mensagem);
 
@@ -138,6 +162,7 @@ function exportJSON() {
     .catch(() => alert("Erro ao enviar ficha."));
 }
 
+
 async function gerarPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -150,15 +175,20 @@ async function gerarPDF() {
     habilidades: JSON.parse(localStorage.getItem('ficha.habilidades') || "{}"),
     distribution: localStorage.getItem('ficha.distribution') || "jack",
     especializacoes: JSON.parse(localStorage.getItem('ficha.especializacoes') || "{}"),
-    disciplinas: JSON.parse(localStorage.getItem('ficha.disciplinas') || "{}")
+    disciplinas: JSON.parse(localStorage.getItem('ficha.disciplinas') || "{}"),
+    meritos: JSON.parse(localStorage.getItem('ficha.meritos') || "[]"),
+    falhas: JSON.parse(localStorage.getItem('ficha.falhas') || "[]"),
+    nascimento: localStorage.getItem('historia.birthYear') || "",
+    ambicao: localStorage.getItem('historia.ambition') || "",
+    desejo: localStorage.getItem('historia.desire') || "",
+    convictions: JSON.parse(localStorage.getItem('historia.convictions') || "[]"),
+    biografia: localStorage.getItem('historia.biografia') || ""
   };
 
-  // Conteúdo do PDF
   let y = 10;
   doc.setFont("Helvetica", "bold");
   doc.setFontSize(14);
-  doc.text("Ficha de Personagem - Vampiro: A Máscara", 10, y);
-  y += 10;
+  doc.text("Ficha de Personagem - Vampiro: A Máscara", 10, y); y += 10;
 
   doc.setFontSize(12);
   doc.setFont("Helvetica", "normal");
@@ -169,48 +199,77 @@ async function gerarPDF() {
   doc.setFont("Helvetica", "bold");
   doc.text("Atributos:", 10, y); y += 7;
   doc.setFont("Helvetica", "normal");
-  Object.entries(ficha.atributos).sort().forEach(([key, val]) => {
-    doc.text(`- ${key}: ${val}`, 12, y);
-    y += 6;
+  Object.entries(ficha.atributos).sort().forEach(([k, v]) => {
+    doc.text(`- ${k}: ${v}`, 12, y); y += 6;
   });
 
   y += 6;
   doc.setFont("Helvetica", "bold");
   doc.text("Habilidades:", 10, y); y += 7;
   doc.setFont("Helvetica", "normal");
-  Object.entries(ficha.habilidades).forEach(([key, val]) => {
-    doc.text(`- ${key}: ${val}`, 12, y);
-    y += 6;
+  Object.entries(ficha.habilidades).forEach(([k, v]) => {
+    doc.text(`- ${k}: ${v}`, 12, y); y += 6;
   });
 
-  doc.addPage();
-
-  y = 10
-
-  y += 8;
-  doc.text(`Distribuição: ${ficha.distribution}`, 10, y);
-
-  y += 6;
+  doc.addPage(); y = 10;
   doc.setFont("Helvetica", "bold");
   doc.text("Especializações:", 10, y); y += 7;
   doc.setFont("Helvetica", "normal");
-  Object.entries(ficha.especializacoes).forEach(([key, val]) => {
-    doc.text(`- ${key}: ${val}`, 12, y);
-    y += 6;
+  Object.entries(ficha.especializacoes).forEach(([k, v]) => {
+    doc.text(`- ${k}: ${v}`, 12, y); y += 6;
   });
 
   y += 6;
   doc.setFont("Helvetica", "bold");
   doc.text("Disciplinas:", 10, y); y += 7;
   doc.setFont("Helvetica", "normal");
-  Object.entries(ficha.disciplinas).forEach(([key, val]) => {
-    doc.text(`- ${key}: ${val}`, 12, y);
-    y += 6;
+  Object.entries(ficha.disciplinas).forEach(([k, v]) => {
+    doc.text(`- ${k}: ${v}`, 12, y); y += 6;
   });
 
-  // Salva o arquivo
+  y += 6;
+  doc.setFont("Helvetica", "bold");
+  doc.text("Méritos:", 10, y); y += 7;
+  doc.setFont("Helvetica", "normal");
+  ficha.meritos.forEach(m => {
+    doc.text(`- ${m.nome} (Custo: ${m.custo}) — ${m.descricao}`, 12, y); y += 6;
+  });
+
+  y += 6;
+  doc.setFont("Helvetica", "bold");
+  doc.text("Falhas:", 10, y); y += 7;
+  doc.setFont("Helvetica", "normal");
+  ficha.falhas.forEach(f => {
+    doc.text(`- ${f.nome} (Ganho: ${f.ganho}) — ${f.descricao}`, 12, y); y += 6;
+  });
+
+  doc.addPage(); y = 10;
+  doc.setFont("Helvetica", "bold");
+  doc.text("História do Personagem", 10, y); y += 8;
+  doc.setFont("Helvetica", "normal");
+  doc.text(`Ano de Nascimento: ${ficha.nascimento}`, 10, y); y += 7;
+  doc.text(`Ambição: ${ficha.ambicao}`, 10, y); y += 7;
+  doc.text(`Desejo: ${ficha.desejo}`, 10, y); y += 10;
+
+  if (ficha.convictions.length > 0) {
+    doc.setFont("Helvetica", "bold");
+    doc.text("Convicções:", 10, y); y += 7;
+    doc.setFont("Helvetica", "normal");
+    ficha.convictions.forEach(c => {
+      doc.text(`- ${c.conviction} (Modelo: ${c.model})`, 12, y); y += 6;
+    });
+    y += 6;
+  }
+
+  doc.setFont("Helvetica", "bold");
+  doc.text("Biografia:", 10, y); y += 7;
+  doc.setFont("Helvetica", "normal");
+
+  // Quebrar a biografia em linhas de no máximo 90 caracteres
+  const linhasBio = doc.splitTextToSize(ficha.biografia, 180);
+  doc.text(linhasBio, 12, y);
+
   doc.save(`Ficha_${ficha.personagem || 'personagem'}.pdf`);
 }
-
 
 preencherFicha();
