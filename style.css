@@ -219,3 +219,7 @@ select:focus {
   top: 5vb;
   width: 20vw;
 }
+
+textarea#biografia {
+  background-color: #444;
+}

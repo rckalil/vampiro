@@ -16,17 +16,57 @@
     <h1>Méritos e Falhas</h1>
     <p>Pontos restantes: <span id="pontosRestantes">5</span></p>
 
+    <!-- MÉRITOS -->
     <section>
       <h2>Méritos</h2>
-      <ul id="listaMeritos" class="lista-opcoes"></ul>
+
+      <div class="categoria-merito">
+        <h3>Físicos</h3>
+        <ul id="meritosFisicos" class="lista-opcoes"></ul>
+      </div>
+
+      <div class="categoria-merito">
+        <h3>Mentais</h3>
+        <ul id="meritosMentais" class="lista-opcoes"></ul>
+      </div>
+
+      <div class="categoria-merito">
+        <h3>Sociais</h3>
+        <ul id="meritosSociais" class="lista-opcoes"></ul>
+      </div>
+
+      <div class="categoria-merito">
+        <h3>Sobrenaturais</h3>
+        <ul id="meritosSobrenaturais" class="lista-opcoes"></ul>
+      </div>
     </section>
 
+    <!-- FALHAS -->
     <section>
       <h2>Falhas</h2>
-      <ul id="listaFalhas" class="lista-opcoes"></ul>
+
+      <div class="categoria-falha">
+        <h3>Físicas</h3>
+        <ul id="falhasFisicos" class="lista-opcoes"></ul>
+      </div>
+
+      <div class="categoria-falha">
+        <h3>Mentais</h3>
+        <ul id="falhasMentais" class="lista-opcoes"></ul>
+      </div>
+
+      <div class="categoria-falha">
+        <h3>Sociais</h3>
+        <ul id="falhasSociais" class="lista-opcoes"></ul>
+      </div>
+
+      <div class="categoria-falha">
+        <h3>Sobrenaturais</h3>
+        <ul id="falhasSobrenaturais" class="lista-opcoes"></ul>
+      </div>
     </section>
 
-    <!-- Botão de salvar -->
+    <!-- Botões -->
     <div class="menu">
       <button onclick="prevStep()">Voltar</button>
       <button onclick="validarMeritosFalhas()">Próximo</button>
