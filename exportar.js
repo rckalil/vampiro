@@ -15,11 +15,8 @@ function preencherFicha() {
 
   const habilidades = JSON.parse(localStorage.getItem('ficha.habilidades') || "{}");
   const habilidadesList = [
-    // Talentos
     'prontidao', 'esportes', 'briga', 'esquiva', 'empatia', 'expressao', 'intimidacao', 'lideranca', 'manha', 'labia',
-    // Perícias
     'empatia-animais', 'oficios', 'conducao', 'etiqueta', 'armas-fogo', 'armas-brancas', 'performance', 'seguranca', 'furtividade', 'sobrevivencia',
-    // Conhecimentos
     'academicos', 'computador', 'financas', 'investigacao', 'direito', 'linguistica', 'medicina', 'ocultismo', 'politica', 'ciencia'
   ];
 
@@ -33,12 +30,59 @@ function preencherFicha() {
   });
 
   const disciplinas = JSON.parse(localStorage.getItem('ficha.disciplinas') || "{}");
-  const nomes = Object.keys(disciplinas); // ["Potência", "Rapidez", ...]
-
+  const nomes = Object.keys(disciplinas);
   document.getElementById('d1').textContent = nomes[0] ? `${nomes[0]} (${disciplinas[nomes[0]]})` : "";
   document.getElementById('d2').textContent = nomes[1] ? `${nomes[1]} (${disciplinas[nomes[1]]})` : "";
   document.getElementById('d3').textContent = nomes[2] ? `${nomes[2]} (${disciplinas[nomes[2]]})` : "";
+
+  // 🔽 Informações da história
+  const historiaDiv = document.querySelector('.historia');
+  if (historiaDiv) {
+    const birthYear = localStorage.getItem('historia.birthYear');
+    const ambition = localStorage.getItem('historia.ambition');
+    const desire = localStorage.getItem('historia.desire');
+    const convictions = JSON.parse(localStorage.getItem('historia.convictions') || '[]');
+
+    let html = '';
+    if (birthYear) html += `<p><strong>Ano de Nascimento:</strong> ${birthYear}</p>`;
+    if (ambition) html += `<p><strong>Ambição:</strong> ${ambition}</p>`;
+    if (desire) html += `<p><strong>Desejo:</strong> ${desire}</p>`;
+    if (convictions.length > 0) {
+      html += `<p><strong>Convicções e Modelos:</strong></p><ul>`;
+      convictions.forEach(c => {
+        html += `<li><strong>${c.conviction}</strong> — Modelo: ${c.model}</li>`;
+      });
+      html += `</ul>`;
+    }
+
+    historiaDiv.innerHTML = html;
+  }
+
+  // 🔽 Informações de méritos
+  const meritosDiv = document.querySelector('.meritos');
+  const meritos = JSON.parse(localStorage.getItem('ficha.meritos') || '[]');
+  if (meritosDiv && meritos.length > 0) {
+    let html = '<ul>';
+    meritos.forEach(m => {
+      html += `<li><strong>${m.nome}</strong> (Custo: ${m.custo}) — ${m.descricao}</li>`;
+    });
+    html += '</ul>';
+    meritosDiv.innerHTML = html;
+  }
+
+  // 🔽 Informações de falhas
+  const falhasDiv = document.querySelector('.falhas');
+  const falhas = JSON.parse(localStorage.getItem('ficha.falhas') || '[]');
+  if (falhasDiv && falhas.length > 0) {
+    let html = '<ul>';
+    falhas.forEach(f => {
+      html += `<li><strong>${f.nome}</strong> (Ganho: ${f.ganho}) — ${f.descricao}</li>`;
+    });
+    html += '</ul>';
+    falhasDiv.innerHTML = html;
+  }
 }
+
 
 function exportJSON() {
   const ficha = {

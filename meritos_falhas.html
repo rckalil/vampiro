@@ -3,24 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ficha de Vampiro: A Máscara</title>
+  <title>Méritos e Falhas</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <!-- Imagem da esquerda -->
+
+  <!-- Imagens laterais -->
   <img src="img/rosa.png" class="imagem-lateral esquerda" alt="Imagem Esquerda"/>
-
-  <!-- Imagem da direita -->
   <img src="img/vinho.png" class="imagem-lateral direita" alt="Imagem Direita"/>
+
   <div class="container">
-    <h1>Vampiro: A Máscara</h1>
+    <h1>Méritos e Falhas</h1>
+    <p>Pontos restantes: <span id="pontosRestantes">5</span></p>
 
+    <section>
+      <h2>Méritos</h2>
+      <ul id="listaMeritos" class="lista-opcoes"></ul>
+    </section>
 
+    <section>
+      <h2>Falhas</h2>
+      <ul id="listaFalhas" class="lista-opcoes"></ul>
+    </section>
+
+    <!-- Botão de salvar -->
     <div class="menu">
       <button onclick="prevStep()">Voltar</button>
-      <button onclick="nextStep()">Próximo</button>
+      <button onclick="validarMeritosFalhas()">Próximo</button>
     </div>
-
   </div>
 
   <script src="comum.js"></script>
