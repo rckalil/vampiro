@@ -21,31 +21,48 @@ function addConviction(convictionText = '', modelText = '') {
 }
 
 function saveHistoryInfo() {
-  const birthYear = document.getElementById('birthYear').value;
+  const birthYear = document.getElementById('birthYear').value.trim();
   const ambition = document.getElementById('ambition').value.trim();
   const desire = document.getElementById('desire').value.trim();
 
-  localStorage.setItem('historia.birthYear', birthYear);
-  localStorage.setItem('historia.ambition', ambition);
-  localStorage.setItem('historia.desire', desire);
+  if (!birthYear || !ambition || !desire) {
+    alert("Por favor, preencha o Ano de Nascimento, Ambição e Desejo.");
+    return;
+  }
 
   const convictions = [];
+  let camposIncompletos = false;
+
   for (let i = 1; i <= convictionCount; i++) {
     const conv = document.querySelector(`input[name="conviction${i}"]`);
     const model = document.querySelector(`input[name="modelo${i}"]`);
-    if (conv && model) {
+
+    const convVal = conv?.value.trim();
+    const modelVal = model?.value.trim();
+
+    if (!convVal || !modelVal) {
+      camposIncompletos = true;
+    } else {
       convictions.push({
-        conviction: conv.value.trim(),
-        model: model.value.trim()
+        conviction: convVal,
+        model: modelVal
       });
     }
   }
 
+  if (camposIncompletos) {
+    alert("Por favor, preencha todas as convicções e modelos antes de continuar.");
+    return;
+  }
+
+  localStorage.setItem('historia.birthYear', birthYear);
+  localStorage.setItem('historia.ambition', ambition);
+  localStorage.setItem('historia.desire', desire);
   localStorage.setItem('historia.convictions', JSON.stringify(convictions));
 
-  alert("Histórico salvo com sucesso!");
   nextStep();
 }
+
 
 window.addEventListener('DOMContentLoaded', () => {
   const birthYear = localStorage.getItem('historia.birthYear');

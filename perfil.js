@@ -17,47 +17,38 @@ const clans = {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    // CLÃ – manter como está
+  // CLÃ – preencher o select
   const clanSelect = document.getElementById('clan');
   const descBox = document.getElementById('clanDescription');
+
   clanSelect.innerHTML = '<option value="">Selecione um clã</option>';
   for (const clan in clans) {
     clanSelect.innerHTML += `<option value="${clan}">${clan}</option>`;
     clanData[clan] = clans[clan];
   }
 
+  // Preenche os campos com dados do localStorage
+  const playerName = localStorage.getItem('ficha.playerName') || "";
+  const characterName = localStorage.getItem('ficha.characterName') || "";
+  const clan = localStorage.getItem('ficha.clan') || "";
+
+  const playerNameInput = document.getElementById('playerName');
+  const characterNameInput = document.getElementById('characterName');
+
+  if (playerNameInput) playerNameInput.value = playerName;
+  if (characterNameInput) characterNameInput.value = characterName;
+  if (clanSelect) clanSelect.value = clan;
+
+  // Mostra a descrição do clã salvo, se houver
+  if (descBox && clan) {
+    descBox.textContent = clanData[clan] || '';
+  }
+
+  // Atualiza a descrição quando o usuário muda de clã
   clanSelect.addEventListener('change', function () {
     const selectedClan = this.value;
     descBox.textContent = clanData[selectedClan] || '';
   });
-
-  const initialClan = clanSelect.value;
-  descBox.textContent = clanData[initialClan] || '';
-
-  // Preenche os campos da página de história com dados do localStorage, se existirem
-  if (window.location.pathname.endsWith("historia.html")) {
-    const playerName = localStorage.getItem('ficha.playerName') || "";
-    const characterName = localStorage.getItem('ficha.characterName') || "";
-    const clan = localStorage.getItem('ficha.clan') || "";
-
-    const playerNameInput = document.getElementById('playerName');
-    const characterNameInput = document.getElementById('characterName');
-    const clanSelect = document.getElementById('clan');
-
-    if (playerNameInput) playerNameInput.value = playerName;
-    if (characterNameInput) characterNameInput.value = characterName;
-    if (clanSelect) clanSelect.value = clan;
-  }
-  const clanDescElement = document.getElementById('clanDescription');
-  if (clanDescElement && clanSelect) {
-    clanDescElement.textContent = clanData[clanSelect.value] || '';
-  }
-});
-
-document.getElementById('clan').addEventListener('change', function () {
-  const selectedClan = this.value;
-  const descBox = document.getElementById('clanDescription');
-  descBox.textContent = clanData[selectedClan] || '';
 });
 
 function saveBasicInfo() {
@@ -81,5 +72,4 @@ function validateInfo() {
     return;
   }
   saveBasicInfo();
-
 }

@@ -48,7 +48,7 @@ function criarLista(opcoes, containerId, tipo, selecionadosSalvos) {
 
 function toggleOpcao(tipo, index) {
   const lista = tipo === 'merito' ? meritos : falhas;
-  const selecionados = tipo === 'merito' ? meritosSelecionados : falhasSelecionados;
+  const selecionados = tipo === 'merito' ? meritosSelecionados : falhasSelecionadas;
   const item = lista[index];
 
   const jaTem = selecionados.includes(item);
@@ -73,7 +73,6 @@ function validarMeritosFalhas() {
   localStorage.setItem("ficha.meritos", JSON.stringify(meritosSelecionados));
   localStorage.setItem("ficha.falhas", JSON.stringify(falhasSelecionadas));
 
-  alert("Méritos e falhas salvos com sucesso!");
   nextStep(); // ou redirecionamento, se preferir
 }
 

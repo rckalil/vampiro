@@ -99,7 +99,9 @@ function adicionarCampoEspecializacao(attr, valor, container, isExtra = false, s
       const selecionaveis = Object.keys(habilidadesSalvas).filter(attr =>
         habilidadesSalvas[attr] >= 1 && !jaAdicionadas.has(attr)
       );
-      criarSelect(selecionaveis, jaAdicionadas, container, selectContainer);
+      const novoSelectContainer = document.createElement('div');
+      novoSelectContainer.id = "select-wrapper";
+      criarSelect(selecionaveis, jaAdicionadas, container, novoSelectContainer);
     });
 
     wrapper.appendChild(removeBtn);
@@ -116,13 +118,24 @@ function salvarEspecializacoes() {
   const inputs = document.querySelectorAll('#especializacoes input');
   const especializacoes = {};
 
+  let camposIncompletos = false;
+
   inputs.forEach(input => {
-    if (input.value.trim()) {
-      especializacoes[input.name] = input.value.trim();
+    const valor = input.value.trim();
+    if (!valor) {
+      camposIncompletos = true;
+    }
+    if (valor) {
+      especializacoes[input.name] = valor;
     }
   });
 
+  if (camposIncompletos) {
+    alert("Por favor, preencha todas as especializações exibidas antes de continuar.");
+    return;
+  }
+
   localStorage.setItem('ficha.especializacoes', JSON.stringify(especializacoes));
-  alert('Especializações salvas com sucesso!');
   nextStep();
 }
+

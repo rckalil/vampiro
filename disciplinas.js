@@ -2,7 +2,7 @@ const totalPermitido = 3;
 const clanDisciplinas = {
   "Brujah": ["Rapidez", "Potência", "Presença"],
   "Grangrel": ["Animalismo", "Fortitude", "Metamorfose"],
-  "Malkavian": ["Auspícios", "Demência", "Ofuscação"],
+  "Malkaviano": ["Auspícios", "Demência", "Ofuscação"],
   "Nosferatu": ["Animalismo", "Ofuscação", "Potência"],
   "Toreador": ["Auspícios", "Rapidez", "Presença"],
   "Tremere": ["Auspícios", "Dominação", "Taumaturgia"],
@@ -121,7 +121,14 @@ function mostrarDetalhes(nome) {
 }
 
 function salvarDisciplinas() {
+  const total = getSomaTotal();
+
+  if (total !== totalPermitido) {
+    alert(`Você deve distribuir exatamente ${totalPermitido} pontos entre as disciplinas.`);
+    return;
+  }
+
   localStorage.setItem("ficha.disciplinas", JSON.stringify(selecionados));
-  alert("Disciplinas salvas com sucesso!");
   nextStep();
 }
+
