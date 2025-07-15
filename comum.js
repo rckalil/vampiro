@@ -2,11 +2,13 @@ let currentStep = 0;
 
 const pages = [
   "index.html",
-  "historia.html",
+  "perfil.html",
   "atributos.html",
   "habilidades.html",
   "especialidades.html",
   "disciplinas.html",
+  "meritos_falhas.html",
+  "historia.html",
   "exportar.html"
 ];
 
