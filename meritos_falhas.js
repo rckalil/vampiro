@@ -1,10 +1,14 @@
 const meritos = {
   fisicos: [
-    { nome: "Ambidestro", descricao: "Você pode usar ambas as mãos com igual destreza.", custo: 1 },
-    { nome: "Corpo Grande", descricao: "Você possui um corpo maior que o normal e ganha um nível extra de vitalidade.", custo: 4 },
-    { nome: "Ingerir Comida", descricao: "Você pode comer comida normalmente sem penalidades, uma raridade entre os vampiros.", custo: 1 },
-    { nome: "Sentido Aguçado", descricao: "Um dos seus sentidos é muito mais aguçado que o normal.", custo: 1 },
-    { nome: "Voz Encantadora", descricao: "Você recebe bônus em testes envolvendo sua voz.", custo: 2 }
+    { nome: "SENTIDO AGUÇADO", descricao: "Um de seus sentidos é excepcionalmente aguçado (visão, audição, paladar, tato ou olfato)", custo: 1 },
+    { nome: "AMBIDESTRO", descricao: "Você possui um elevado nível de destreza manual, podendo executar tarefas com sua mão 'inábil' sem sofrer penalidades.", custo: 1 },
+    { nome: "INGERIR COMIDA", descricao: "Você tem a capacidade de ingerir comida e até saboreá-la.", custo: 1 },
+    { nome: "EQUILÍBRIO PERFEITO", descricao: "Você possui um senso de equilíbrio inato perfeito.", custo: 1 },
+    { nome: "RUBOR DE SAÚDE", descricao: "A sua aparência é mais natural e saudável do que a dos outros vampiros, o que lhe permite misturar-se aos humanos com mais facilidade.", custo: 2 },
+    { nome: "Voz  ENCANTADORA", descricao: "Existe algo em sua voz que os outros simplesmente não conseguem ignorar.", custo: 2 },
+    { nome: "TEMERÁRIO", descricao: "Você é bom em assumir riscos e ainda melhor em sobreviver a eles.", custo: 3 },
+    { nome: "DIGESTÃO EFICIENTE", descricao: "Você é capaz de extrair mais nutrientes do sangue do que o habitual.", custo: 3 },
+    { nome: "CORPO GRANDE", descricao: "Você é anormalmente grande, medindo talvez mais de dois metros de altura.", custo: 4 }
   ],
   mentais: [
     { nome: "Bom Senso", descricao: "O narrador pode ajudá-lo com dicas em situações arriscadas.", custo: 1 },
@@ -28,7 +32,7 @@ const meritos = {
 
 const falhas = {
   fisicos: [
-    { nome: "Aleijado", descricao: "Mobilidade extremamente reduzida.", ganho: 3 },
+    { nome: "CHEIRO DO TÚMULO ", descricao: "Você exala um odor de umidade e terra recém-revolvida, e não   há perfume que seja capaz de mascarar esse cheiro.", ganho: 1 },
     { nome: "Cegueira", descricao: "Você é completamente cego.", ganho: 6 },
     { nome: "Deficiência Visual", descricao: "Penalidades em tarefas visuais.", ganho: 1 },
     { nome: "Sono Pesado", descricao: "É muito difícil acordar durante o dia.", ganho: 1 }

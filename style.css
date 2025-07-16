@@ -223,3 +223,13 @@ select:focus {
 textarea#biografia {
   background-color: #444;
 }
+
+.lcol {
+  width: 45%;
+  float: left;
+}
+
+.rcol {
+  width: 45%;
+  float: right;
+}
