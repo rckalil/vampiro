@@ -73,3 +73,10 @@ function validateInfo() {
   }
   saveBasicInfo();
 }
+
+function confirmReset() {
+  const confirmar = confirm("Tem certeza de que deseja começar tudo de novo? Todas as seleções serão perdidas.");
+  if (confirmar) {
+    prevStep();
+  }
+}
