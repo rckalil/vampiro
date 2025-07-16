@@ -8,7 +8,7 @@ function preencherFicha() {
   document.getElementById('vigor').textContent = atributos.vigor || "";
   document.getElementById('carisma').textContent = atributos.carisma || "";
   document.getElementById('manipulacao').textContent = atributos.manipulacao || "";
-  document.getElementById('autocontrole').textContent = atributos.autocontrole || "";
+  document.getElementById('aparencia').textContent = atributos.aparencia || "";
   document.getElementById('percepcao').textContent = atributos.percepcao || "";
   document.getElementById('inteligencia').textContent = atributos.inteligencia || "";
   document.getElementById('raciocinio').textContent = atributos.raciocinio || "";
