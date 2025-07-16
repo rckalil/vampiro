@@ -232,16 +232,24 @@ async function gerarPDF() {
   doc.text("Méritos:", 10, y); y += 7;
   doc.setFont("Helvetica", "normal");
   ficha.meritos.forEach(m => {
-    doc.text(`- ${m.nome} (Custo: ${m.custo}) — ${m.descricao}`, 12, y); y += 6;
+    const texto = `- ${m.nome} (Custo: ${m.custo}) — ${m.descricao}`;
+    const linhas = doc.splitTextToSize(texto, 180);
+    doc.text(linhas, 12, y);
+    y += linhas.length * 6;
   });
+
 
   y += 6;
   doc.setFont("Helvetica", "bold");
   doc.text("Falhas:", 10, y); y += 7;
   doc.setFont("Helvetica", "normal");
-  ficha.falhas.forEach(f => {
-    doc.text(`- ${f.nome} (Ganho: ${f.ganho}) — ${f.descricao}`, 12, y); y += 6;
+  ficha.falhas.forEach(m => {
+    const texto = `- ${m.nome} (Custo: ${m.ganho}) — ${m.descricao}`;
+    const linhas = doc.splitTextToSize(texto, 180);
+    doc.text(linhas, 12, y);
+    y += linhas.length * 6;
   });
+
 
   doc.addPage(); y = 10;
   doc.setFont("Helvetica", "bold");

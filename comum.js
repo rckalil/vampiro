@@ -22,7 +22,8 @@ function nextStep() {
       localStorage.clear();
     }
     const nextPage = pages[currentIndex + 1];
-    window.location.href = nextPage;
+    const basePath = window.location.pathname.replace(/[^/]*$/, "");
+    window.location.href = basePath + nextPage;
   }
 }
 
@@ -32,6 +33,7 @@ function prevStep() {
 
   if (currentIndex > 0) {
     const prevPage = pages[currentIndex - 1];
-    window.location.href = prevPage;
+    const basePath = window.location.pathname.replace(/[^/]*$/, "");
+    window.location.href = basePath + prevPage;
   }
 }
