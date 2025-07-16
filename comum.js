@@ -1,4 +1,4 @@
-let currentStep = 0;
+const basePath = "/vampiro/"; // Caminho do repositório no GitHub Pages
 
 const pages = [
   "index.html",
@@ -22,7 +22,6 @@ function nextStep() {
       localStorage.clear();
     }
     const nextPage = pages[currentIndex + 1];
-    const basePath = window.location.pathname.replace(/[^/]*$/, "");
     window.location.href = basePath + nextPage;
   }
 }
@@ -33,7 +32,6 @@ function prevStep() {
 
   if (currentIndex > 0) {
     const prevPage = pages[currentIndex - 1];
-    const basePath = window.location.pathname.replace(/[^/]*$/, "");
     window.location.href = basePath + prevPage;
   }
 }
