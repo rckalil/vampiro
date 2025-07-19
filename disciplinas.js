@@ -1,18 +1,18 @@
 const totalPermitido = 3;
 const clanDisciplinas = {
   "Brujah": ["Rapidez", "Potência", "Presença"],
-  "Grangrel": ["Animalismo", "Fortitude", "Metamorfose"],
+  "Grangrel": ["Rapidez", "Fortitude", "Metamorfose"],
   "Malkaviano": ["Auspícios", "Demência", "Ofuscação"],
   "Nosferatu": ["Animalismo", "Ofuscação", "Potência"],
   "Toreador": ["Auspícios", "Rapidez", "Presença"],
-  "Tremere": ["Auspícios", "Dominação", "Taumaturgia"],
+  "Tremere": ["Auspícios", "Ofuscação", "Taumaturgia"],
   "Ventrue": ["Dominação", "Fortitude", "Presença"],
   "Lasombra": ["Dominação", "Potência", "Tenebrosidade"],
   "Tzimisce": ["Animalismo", "Auspícios", "Vicissitude"],
-  "Assamita": ["Ofuscação", "Rapidez", "Quietus"],
+  "Assamita": ["Ofuscação", "Potência", "Assassinato"],
   "Setita": ["Ofuscação", "Presença", "Serpentis"],
   "Giovanni": ["Dominação", "Necromancia", "Potência"],
-  "Ravnos": ["Animalismo", "Fortitude", "Quimerismo"]
+  "Ravnos": ["Ofuscação", "Fortitude", "Ilusão"]
 };
 
 const disciplinasList = {
@@ -22,7 +22,7 @@ const disciplinasList = {
     "Os Brujah desfrutam da vantagem que esta habilidade lhes proporciona contra um número superior de oponentes.",
     "Os Toreador muitas vezes usam esta Disciplina para garantir uma graça sobrenatural à suas performances ao vivo ou realizarem esculturas e pinturas com velocidade extraordinária - contudo, eles podem ser tão terríveis como os Assamitas ou Brujah quando enfurecidos.",
     "Seu uso custa sangue."],
-  "Quimerismo": ["Ignis Fatuus", "Fata Morgana", "Aparição", "Permanência", "Cruel Realidade"],
+  "Ilusão": ["Ignis Fatuus", "Fata Morgana", "Aparição", "Permanência", "Cruel Realidade"],
   "Demência": ["Paixão", "Assombrar a Alma", "Olhos do Caos", "A Voz da Loucura", "Insanidade Total"],
   "Dominação": ["O Comando", "Hipnotizar", "Ordenar Esquecimentos", "Condicionamento", "Possessão"],
   "Fortitude": ["Os Gangrel desfrutam dos benefícios desta Disciplina por si só, mas os Ravnos e especialmente os Ventrue desfrutam dos efeitos psicológicos do poder.",
@@ -34,7 +34,7 @@ const disciplinasList = {
     "Mesmo assim, membros de outros clãs frequentemente conseguem encontrar alguém que os possa encaminhar através dos caminhos da Potência. "],
   "Presença": ["Fascínio", "Olhar Aterrorizante", "Transe", "Convocação", "Majestade"],
   "Metamorfose": ["Os Olhos da Besta", "Garras da Besta", "Fusão Com a Terra", "A Forma da Besta", "Forma de Névoa"],
-  "Quietus": ["Silêncio Mortal", "O Toque do Escorpião", "O Chamado de Dagon", "A Carícia de Baal", "O Gosto da Morte"],
+  "Assassinato": ["Silêncio Mortal", "O Toque do Escorpião", "O Chamado de Dagon", "A Carícia de Baal", "O Gosto da Morte"],
   "Serpentis": ["Os Olhos da Serpente", "A Língua da Serpente", "A Pele da Víbora", "A Forma da Serpente", "O Coração das Trevas"],
   "Taumaturgia": ["Complexo. Consulte a Mestra."],
   "Vicissitude": ["Aspecto Maleável", "Moldar a Carne", "Moldar os Ossos", "Forma Horripilante", "Forma Sanguinea"]
